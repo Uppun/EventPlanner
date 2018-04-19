@@ -1,0 +1,38 @@
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+.input {
+  display: flex;
+  flex-direction: row;
+}
+
+.date {
+  margin: 10px;
+}
+
+.timezone {
+  margin: 10px;
+}
+
+.submit {
+  margin: 10px;
+}
+
+.name {
+  margin: 10px;
+}
+
+.events {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  border-style: outset;
+  border-radius: 10px;
+  margin: 5px;
+}
