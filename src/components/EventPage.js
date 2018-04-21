@@ -3,8 +3,9 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment';
 import 'moment-timezone';
 import {Container} from 'flux/utils';
-import EventActions from '../actions/EventActions'
-import EventStore from '../stores/EventStore'
+import EventActions from '../actions/EventActions';
+import EventStore from '../stores/EventStore';
+import history from '../history';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/main.css'
@@ -20,6 +21,25 @@ moment.updateLocale('en', {
         sameElse: 'MMMM Do [at] LT'
     }
 });
+
+class EventComponent extends React.Component {
+    handleClick = () => {
+        this.props.eventClick(this.props.date, this.props.timezone, this.props.name);
+    }
+
+    render() {
+        return (
+            <div className='event' onClick={this.handleClick}>
+                <div className='eventName'>
+                    {this.props.name ? this.props.name : ''}
+                </div>
+                <div className='eventDate'>
+                    {moment.tz(this.props.date, moment.tz.guess()).calendar()}
+                </div>
+            </div>
+        )
+    }
+}
 
 class EventPage extends React.Component {
     constructor () {
@@ -53,8 +73,18 @@ class EventPage extends React.Component {
     handleClick = () => {
         const date = this.state.selectedDate.format('YYYY-MM-DDTHH:mm');
         const convertedDate = moment.tz(date, this.timezone.value);
-        EventActions.add(convertedDate, this.name.value);
+        EventActions.add(convertedDate, this.timezone.value, this.name.value);
         this.name.value = '';
+    }
+
+    eventClick(date, timezone, name) {
+        if(name) {
+            history.push(`/Event/&${date.format()}&${timezone}&${name}`);    
+        }
+        else {
+            history.push(`/Event/&${date.format()}&${timezone}`);  
+        }
+
     }
 
     render() {
@@ -62,14 +92,7 @@ class EventPage extends React.Component {
             <div>
                 <div className='events'>
                     {this.state.events.map((event, index) => { return (
-                        <div className='event' key={index}>
-                            <div className='eventName'>
-                                {event.name ? event.name : ''}
-                            </div>
-                            <div className='eventDate'>
-                                {moment.tz(event.date, moment.tz.guess()).calendar()}
-                            </div>
-                        </div>
+                        <EventComponent key={index} date={event.date} timezone={event.timezone} name={event.name} eventClick={this.eventClick} />
                     )})}
                 </div>
                 <div className="input">

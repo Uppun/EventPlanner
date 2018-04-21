@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import EventPage from './components/EventPage'
+import EventPage from './components/EventPage';
+import EventSingle from './components/EventSingle';
+import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <EventPage />
+      <Switch>
+        <Route exact path='/' component={EventPage} />
+        <Route path='/Event/:eventinfo' component={EventSingle} />
+      </Switch>
     );
   }
 }

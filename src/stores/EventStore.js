@@ -15,8 +15,8 @@ class EventStore extends ReduceStore {
     reduce(state, action) {
         switch(action.type) {
             case ActionTypes.ADD: {
-                const {date, name} = action;
-                const event = name ? {date, name} : {date};
+                const {date, timezone, name} = action;
+                const event = name ? {date, timezone, name} : {date, timezone};
                 const events = [...state, event];
                 return events;
             }
