@@ -4,8 +4,10 @@
   }
 
 .input {
-  display: flex;
-  flex-direction: row;
+  border-radius: 10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #142F54;
 }
 
 .date {
@@ -25,14 +27,52 @@
 }
 
 .events {
+  border-radius: 10px;
+  margin: 2px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #142F54;
+  width: 500px;
+  min-height: 100px;
+  background-color: #2C4870;
 }
 
+.dateAndTime {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputBanner {
+  width: 100%;
+  height: 100px;
+  background-color: #2C4870;
+  color: #FFF;
+  font-family: "Courier New", Times, serif;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+}
+.contents {
+  position: fixed;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.entry {
+  background-color: #D8DFEA;
+}
 .event {
   display: flex;
   flex-direction: column;
   border-style: outset;
   border-radius: 10px;
   margin: 5px;
+  background-color: #D8DFEA;
+  border-color: #4E698E;
 }

@@ -89,30 +89,35 @@ class EventPage extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className='contents'>
                 <div className='events'>
                     {this.state.events.map((event, index) => { return (
                         <EventComponent key={index} date={event.date} timezone={event.timezone} name={event.name} eventClick={this.eventClick} />
                     )})}
                 </div>
                 <div className="input">
-                    <input type='text' className='name' placeholder="Enter event name" ref={node => {this.name = node;}}/>
-                    <DatePicker
-                        selected={this.state.selectedDate}
-                        onChange={this.handleChange}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={1}
-                        dateFormat="LLL"
-                        timeCaption="time"
-                        className="date"
-                        />
-                    <select defaultValue={moment.tz.guess()} className="timezone" ref={node => {this.timezone = node;}}>
-                        {moment.tz.names().map((timezone, index) => { return (
-                            <option key={index} value={timezone}>{timezone}</option>
-                        )})}
-                    </select>
-                    <button className="submit" onClick={this.handleClick}>Add</button>
+                    <div className="inputBanner">Register Event</div>
+                    <div className="entry">                 
+                        <input type='text' className='name' placeholder="Enter event name" ref={node => {this.name = node;}}/>
+                        <button className="submit" onClick={this.handleClick}>Add</button>
+                        <div className="dateAndTime">
+                            <DatePicker
+                                selected={this.state.selectedDate}
+                                onChange={this.handleChange}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={1}
+                                dateFormat="LLL"
+                                timeCaption="time"
+                                className="date"
+                                />
+                            <select defaultValue={moment.tz.guess()} className="timezone" ref={node => {this.timezone = node;}}>
+                                {moment.tz.names().map((timezone, index) => { return (
+                                    <option key={index} value={timezone}>{timezone}</option>
+                                )})}
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
